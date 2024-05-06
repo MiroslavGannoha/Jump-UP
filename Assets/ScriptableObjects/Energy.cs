@@ -1,8 +1,10 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [CreateAssetMenu(fileName = "Energy", menuName = "ScriptableObjects/Energy", order = 1)]
 public class Energy : ScriptableObject
 {
-    public float energy = 123.2f;
+    [Range(0, 1)]
+    public float energy = 0.0f;
+    [Range(0, 1)]
+    public float cost = 0.0f;
 }

@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="CustomProgressBar" src="project://database/Assets/UI/CustomElements/CustomProgressBar.uxml?fileID=9197481963319205126&amp;guid=378db52ce1bf238498c4f444637ca30c&amp;type=3#CustomProgressBar" />
+    <engine:VisualElement name="Container" style="flex-grow: 1; align-content: stretch; align-self: flex-end; justify-content: flex-end; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px;">
+        <engine:Instance template="CustomProgressBar" style="height: 368px;" />
+    </engine:VisualElement>
+</engine:UXML>

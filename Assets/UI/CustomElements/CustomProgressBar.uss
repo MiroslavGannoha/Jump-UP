@@ -1,0 +1,63 @@
+:root {
+    --cpb-base-color: #484848;
+    --cpb-progress-color: #24a77d;
+    --cpb-cost-color: #e98874;
+}
+
+#CustomProgressBar {
+    flex-grow: 1;
+    align-self: center;
+}
+
+#CustomProgressBar #cpb-container {
+    border-color: #adadad;
+    flex-grow: 1;
+    background-color: var(--cpb-base-color);
+    padding: 4px;
+    border-radius: 14px;
+    justify-content: space-between;
+    flex-direction: row;
+    align-self: auto;
+    align-items: flex-end;
+    border-width: 2px;
+    flex-direction: column;
+}
+
+
+#CustomProgressBar #cpb-empty {
+    background-color: transparent;
+    width: 20px;
+    flex-grow: 1;
+    height: auto;
+}
+
+#CustomProgressBar #cpb-leftover {
+    background-color: var(--cpb-progress-color);
+    flex-grow: 1;
+    width: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 50%;
+}
+
+#CustomProgressBar #cpb-cost {
+    background-color: var(--cpb-cost-color);
+    flex-grow: initial;
+    width: 20px;
+    /* border-top-left-radius: 10px;
+    border-top-right-radius: 10px; */
+    height: 0%;
+}
+
+#CustomProgressBar .rounded-bottom {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+#CustomProgressBar .rounded-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#CustomProgressBar #cpb-cost.empty {
+    background-color: var(--cpb-base-color);
+}

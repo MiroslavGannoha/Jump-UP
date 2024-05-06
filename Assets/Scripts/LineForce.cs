@@ -78,7 +78,7 @@ public class LineForce : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rb.velocity.magnitude < stopVelocity)
+        if (rb.linearVelocity.magnitude < stopVelocity)
         {
             Stop();
         }
@@ -123,7 +123,7 @@ public class LineForce : MonoBehaviour
 
     private void Stop()
     {
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
 

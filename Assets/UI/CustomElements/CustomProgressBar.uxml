@@ -1,9 +1,16 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:VisualElement style="flex-grow: 1; align-self: center;">
-        <engine:VisualElement style="flex-grow: 1; background-color: rgb(208, 208, 208); padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; border-top-left-radius: 14px; border-top-right-radius: 14px; border-bottom-right-radius: 14px; border-bottom-left-radius: 14px; justify-content: space-between; flex-direction: row; align-self: auto; align-items: flex-end; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(43, 168, 58); border-right-color: rgb(43, 168, 58); border-top-color: rgb(43, 168, 58); border-bottom-color: rgb(43, 168, 58); -unity-background-image-tint-color: rgb(255, 255, 255);">
-            <engine:VisualElement style="flex-grow: 1; background-color: rgb(66, 197, 60); width: 20px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; height: 50%;" />
+    <Style src="project://database/Assets/UI/CustomElements/CustomProgressBar.uss?fileID=7433441132597879392&amp;guid=a187e3c1e185f794499e9d81160c5e3c&amp;type=3#CustomProgressBar" />
+    <CustomProgressBar name="CustomProgressBar" value="1" data-source="project://database/Assets/ScriptableObjects/Energy.asset?fileID=11400000&amp;guid=812b6ff104b47c140ba0dd347008547d&amp;type=2#Energy" data-source-path="energy" cost="0" val="0.382">
+        <engine:VisualElement name="cpb-container" class="ccc">
+            <engine:VisualElement name="cpb-empty" />
+            <engine:VisualElement name="cpb-progress">
+                <engine:VisualElement name="cpb-cost" />
+                <engine:VisualElement name="cpb-leftover" />
+            </engine:VisualElement>
         </engine:VisualElement>
-    </engine:VisualElement>
-    <CustomProgressBar />
-    <MyElement />
+        <Bindings>
+            <engine:DataBinding property="val" data-source-path="energy" data-source="project://database/Assets/ScriptableObjects/Energy.asset?fileID=11400000&amp;guid=812b6ff104b47c140ba0dd347008547d&amp;type=2#Energy" binding-mode="ToTarget" />
+            <engine:DataBinding property="cost" data-source-path="cost" data-source="project://database/Assets/ScriptableObjects/Energy.asset?fileID=11400000&amp;guid=812b6ff104b47c140ba0dd347008547d&amp;type=2#Energy" binding-mode="ToTarget" />
+        </Bindings>
+    </CustomProgressBar>
 </engine:UXML>

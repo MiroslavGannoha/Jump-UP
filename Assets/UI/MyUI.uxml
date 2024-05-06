@@ -1,9 +1,0 @@
-<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:Template name="CustomProgressBar" src="project://database/Assets/UI/CustomElements/CustomProgressBar.uxml?fileID=9197481963319205126&amp;guid=378db52ce1bf238498c4f444637ca30c&amp;type=3#CustomProgressBar" />
-    <engine:ProgressBar title="my-progress" data-source="project://database/Assets/ScriptableObjects/Energy.asset?fileID=11400000&amp;guid=812b6ff104b47c140ba0dd347008547d&amp;type=2#Energy" data-source-path="energy" high-value="1000" style="justify-content: center; flex-direction: column; background-color: rgba(181, 0, 0, 0);">
-        <Bindings>
-            <engine:DataBinding property="value" binding-mode="TwoWay" data-source="project://database/Assets/ScriptableObjects/Energy.asset?fileID=11400000&amp;guid=812b6ff104b47c140ba0dd347008547d&amp;type=2#Energy" data-source-path="energy" />
-        </Bindings>
-    </engine:ProgressBar>
-    <engine:Instance template="CustomProgressBar" />
-</engine:UXML>
