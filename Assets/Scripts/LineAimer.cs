@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class LineForce : MonoBehaviour
+public class LineAimer : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField]
     private LineRenderer lineRenderer;
     private bool isAiming;
@@ -12,29 +11,16 @@ public class LineForce : MonoBehaviour
     [SerializeField]
     private float stopVelocity = 0.05f;
 
-    [SerializeField]
-    private float shotPower = 150f;
     private bool isEnabled = true;
 
-    // GameManager gameManager;
-    // BallAudioManager ballAudioManager;
-    // VFXManager vfxManager;
-
-    public UnityEvent<float, Vector3> OnShootEventTrigger = new UnityEvent<float, Vector3>();
-    public UnityEvent<float, Vector3> OnAimingEventTrigger = new UnityEvent<float, Vector3>();
+    public UnityEvent<float, Vector3> OnAiming = new UnityEvent<float, Vector3>();
+    public UnityEvent<float, Vector3> OnAimingEnd = new UnityEvent<float, Vector3>();
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         isAiming = false;
         lineRenderer.enabled = false;
-    }
-
-    void Start()
-    {
-        // vfxManager = GameObject.Find("VFXManager").GetComponent<VFXManager>();
-        // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        // ballAudioManager = GameObject.Find("CueBallAudioManager").GetComponent<BallAudioManager>();
     }
 
     private void OnMouseDown()
@@ -62,31 +48,17 @@ public class LineForce : MonoBehaviour
         if (worldPoint.HasValue)
         {
             DrawLine((Vector3)worldPoint);
-            OnAimingEventTrigger.Invoke(strength, direction);
+            OnAiming.Invoke(strength, direction);
         }
 
         if (Input.GetMouseButtonUp(0) && worldPoint != null)
         {
-            Shoot(strength, direction);
+            isAiming = false;
+            lineRenderer.enabled = false;
+            OnAimingEnd.Invoke(strength, direction);
         }
     }
 
-    private void Shoot(float strength, Vector3 direction)
-    {
-        rb.AddForce(strength * direction * shotPower, ForceMode.Impulse);
-        isAiming = false;
-        lineRenderer.enabled = false;
-        // gameManager.IncreaseKicksCount();
-        // ballAudioManager.PlayStickStrikeSound(strength);
-
-        // if (strength > 6f)
-        // {
-        OnShootEventTrigger.Invoke(strength, direction);
-        // vfxManager.PlayTrailVFX(direction);
-        // }
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (rb.linearVelocity.magnitude < stopVelocity)

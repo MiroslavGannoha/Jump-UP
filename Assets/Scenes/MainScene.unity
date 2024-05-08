@@ -184,9 +184,10 @@ GameObject:
   - component: {fileID: 300055360}
   - component: {fileID: 300055359}
   - component: {fileID: 300055358}
-  - component: {fileID: 300055363}
+  - component: {fileID: 300055364}
+  - component: {fileID: 300055365}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,7 +310,7 @@ Transform:
   - {fileID: 1174459678}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &300055363
+--- !u!114 &300055364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,12 +319,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 300055357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d157a9060a006a341b3a79fa2fa2f30d, type: 3}
+  m_Script: {fileID: 11500000, guid: e8fe63e0769371745b6c436df66022d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyState: {fileID: 11400000, guid: 812b6ff104b47c140ba0dd347008547d, type: 2}
+  lineAimer: {fileID: 300055365}
+  rechargeDelay: 2
+  shotPower: 150
+--- !u!114 &300055365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300055357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d725f28db0e0d42a02aa5222921963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 1174459679}
   stopVelocity: 0.05
-  shotPower: 200
+  OnAiming:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAimingEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
