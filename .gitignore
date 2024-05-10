@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # Imported packages from the Asset Store
 /Assets/Imports/
+
+# Plugins that are not native to Unity
+/Assets/Plugins/

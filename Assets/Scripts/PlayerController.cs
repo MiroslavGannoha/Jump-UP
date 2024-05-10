@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Animancer;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -20,6 +21,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator restoreEnergyCoroutine;
 
+    [SerializeField]
+    private AnimancerComponent _Animancer;
+
+    [SerializeField]
+    private AnimationClip _Move;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -31,6 +38,7 @@ public class PlayerController : MonoBehaviour
         lineAimer.OnAiming.AddListener(OnAiming);
         lineAimer.OnAimingEnd.AddListener(OnAimingEnd);
         RechargeEnergy();
+        _Animancer.Play(_Move);
     }
 
     // Update is called once per frame
