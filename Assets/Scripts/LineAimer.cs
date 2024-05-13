@@ -13,7 +13,9 @@ public class LineAimer : MonoBehaviour
 
     private bool isEnabled = true;
 
+    public UnityEvent OnAimingStart = new UnityEvent();
     public UnityEvent<float, Vector3> OnAiming = new UnityEvent<float, Vector3>();
+    public UnityEvent OnCancelAiming = new UnityEvent();
     public UnityEvent<float, Vector3> OnAimingEnd = new UnityEvent<float, Vector3>();
 
     private void Awake()
@@ -28,14 +30,12 @@ public class LineAimer : MonoBehaviour
         if (!isAiming && isEnabled)
         {
             isAiming = true;
+            OnAimingStart.Invoke();
         }
     }
 
     private void PorcessAim()
     {
-        if (!isAiming)
-            return;
-
         Vector3? worldPoint = CastMouseClickRay();
         if (worldPoint == null)
             return;
@@ -51,12 +51,17 @@ public class LineAimer : MonoBehaviour
             OnAiming.Invoke(strength, direction);
         }
 
-        if (Input.GetMouseButtonUp(0) && worldPoint != null)
+        if (Input.GetMouseButtonUp(0))
         {
-            isAiming = false;
-            lineRenderer.enabled = false;
+            ClearAim();
             OnAimingEnd.Invoke(strength, direction);
         }
+    }
+
+    private void ClearAim()
+    {
+        isAiming = false;
+        lineRenderer.enabled = false;
     }
 
     void Update()
@@ -65,7 +70,31 @@ public class LineAimer : MonoBehaviour
         {
             Stop();
         }
-        PorcessAim();
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            OnCancelAiming.Invoke();
+            ClearAim();
+        }
+        if (isAiming)
+        {
+            PorcessAim();
+        }
+    }
+
+    private void Stop()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    public void Enable()
+    {
+        isEnabled = true;
+    }
+
+    public void Disable()
+    {
+        isEnabled = false;
     }
 
     private void DrawLine(Vector3 worldPoint)
@@ -106,21 +135,5 @@ public class LineAimer : MonoBehaviour
         {
             return null;
         }
-    }
-
-    private void Stop()
-    {
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-    }
-
-    public void Enable()
-    {
-        isEnabled = true;
-    }
-
-    public void Disable()
-    {
-        isEnabled = false;
     }
 }
