@@ -125,27 +125,42 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 300055362}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -11.47
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.003
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 30.86
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0048870165
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
@@ -155,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.99998814
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
@@ -170,7 +185,7 @@ PrefabInstance:
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 179.44
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
@@ -181,11 +196,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
+      objectReference: {fileID: 9100000, guid: 06f154df79301234089d9eee6878f977, type: 2}
+    - target: {fileID: 2551892347925612377, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612379, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       propertyPath: m_Name
       value: Frog
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551892347925612379, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551892347925612390, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -195,13 +225,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 383981489}
+    - targetCorrespondingSourceObject: {fileID: 2551892347925612379, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 383981493}
   m_SourcePrefab: {fileID: 100100000, guid: f2d37b34e3e70a545afb6ca990777dd6, type: 3}
---- !u!4 &187334211 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
-    type: 3}
-  m_PrefabInstance: {fileID: 187334210}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &273321949
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,8 +297,9 @@ GameObject:
   - component: {fileID: 300055358}
   - component: {fileID: 300055364}
   - component: {fileID: 300055365}
+  - component: {fileID: 300055368}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,7 +316,7 @@ Rigidbody:
   m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 5
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_CenterOfMass: {x: 0.6, y: 1.08, z: -1.6}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -347,7 +376,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7db1a2949d9178043b979cd919623bab, type: 2}
+  - {fileID: 2100000, guid: 882d394e06e012347bc5b71a6d4768c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -386,12 +415,11 @@ Transform:
   m_GameObject: {fileID: 300055357}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.47, y: 2.77, z: 30.86}
+  m_LocalPosition: {x: -11.47, y: 2.5, z: 30.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1174459678}
-  - {fileID: 187334211}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &300055364
@@ -407,11 +435,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyState: {fileID: 11400000, guid: 812b6ff104b47c140ba0dd347008547d, type: 2}
-  lineAimer: {fileID: 300055365}
   rechargeDelay: 2
   shotPower: 150
   _Animancer: {fileID: 383981489}
-  _Move: {fileID: 7400022, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
 --- !u!114 &300055365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,12 +452,140 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 1174459679}
   stopVelocity: 0.05
+  OnAimingStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 300055368}
+        m_TargetAssemblyTypeName: AnimationController, Assembly-CSharp
+        m_MethodName: StartJump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnAiming:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 300055364}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: DisplayEnergyCost
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnCancelAiming:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 300055368}
+        m_TargetAssemblyTypeName: AnimationController, Assembly-CSharp
+        m_MethodName: StopAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnAimingEnd:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 300055364}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: PerformJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 300055368}
+        m_TargetAssemblyTypeName: AnimationController, Assembly-CSharp
+        m_MethodName: ResumeAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 300055368}
+        m_TargetAssemblyTypeName: AnimationController, Assembly-CSharp
+        m_MethodName: StartFly
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &300055368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300055357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a6f87bbe490b643b7d7eedd7e1c0ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Idle: {fileID: 7400016, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
+  _Fly:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400012, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  _Jump:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes:
+      - 0.19340661
+      - NaN
+      _Callbacks:
+      - m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 300055368}
+            m_TargetAssemblyTypeName: AnimationController, Assembly-CSharp
+            m_MethodName: PauseAnimation
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      _Names: []
+    _Clip: {fileID: 7400022, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  _RotateLeft: {fileID: 7400000, guid: a0e56d49887fd9c468befb5de658d96b, type: 2}
+  _RotateRight: {fileID: 7400000, guid: 93f4efac91c2aeb45b552850726d291f, type: 2}
+  _Animancer: {fileID: 383981489}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +798,20 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 187334210}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &383981493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383981488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20f844cf862f114e8a78188f543cb97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 300055362}
+  YOffset: 0.5
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,6 +1317,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: jump-up-proto
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42a6868748f838946a3ac1ec5c1aa620,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1172,3 +1345,4 @@ SceneRoots:
   - {fileID: 300055362}
   - {fileID: 273321951}
   - {fileID: 1030912093}
+  - {fileID: 187334210}
