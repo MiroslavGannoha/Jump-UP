@@ -145,7 +145,7 @@ PrefabInstance:
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.47
+      value: -11.69
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
@@ -185,7 +185,7 @@ PrefabInstance:
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612376, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
@@ -200,7 +200,7 @@ PrefabInstance:
     - target: {fileID: 2551892347925612377, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612379, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
@@ -217,6 +217,76 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207376, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -28.734516
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207376, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -4.605307
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207376, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -170.94902
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207378, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -28.734516
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207378, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 4.605307
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207378, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 170.94902
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207380, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98021
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207386, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 89.98021
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207388, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -7.179958
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207388, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.000008583581
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207388, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207390, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -7.179958
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207390, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.000008583581
+      objectReference: {fileID: 0}
+    - target: {fileID: 6192431233728207390, guid: f2d37b34e3e70a545afb6ca990777dd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -224,11 +294,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2551892347925612379, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 383981489}
+      addedObject: {fileID: 383981493}
     - targetCorrespondingSourceObject: {fileID: 2551892347925612379, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 383981493}
+      addedObject: {fileID: 383981489}
   m_SourcePrefab: {fileID: 100100000, guid: f2d37b34e3e70a545afb6ca990777dd6, type: 3}
 --- !u!1 &273321949
 GameObject:
@@ -435,7 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyState: {fileID: 11400000, guid: 812b6ff104b47c140ba0dd347008547d, type: 2}
-  rechargeDelay: 2
+  rechargeDelay: 0.5
   shotPower: 150
   _Animancer: {fileID: 383981489}
 --- !u!114 &300055365
@@ -482,12 +552,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 300055364}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: UpdateRotation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCancelAiming:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 300055368}
         m_TargetAssemblyTypeName: AnimationController, Assembly-CSharp
         m_MethodName: StopAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 300055364}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: CancelJump
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -524,18 +618,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 300055368}
-        m_TargetAssemblyTypeName: AnimationController, Assembly-CSharp
-        m_MethodName: StartFly
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &300055368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,7 +630,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a6f87bbe490b643b7d7eedd7e1c0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Idle: {fileID: 7400016, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
+  _Idle:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 1433558805725586491, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
   _Fly:
     _FadeDuration: 0.25
     _Events:
@@ -579,6 +669,15 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+      _Names: []
+    _Clip: {fileID: 7400022, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  _JumpSimple:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
       _Names: []
     _Clip: {fileID: 7400022, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
     _Speed: 1
@@ -1342,7 +1441,7 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 1551869208}
-  - {fileID: 300055362}
   - {fileID: 273321951}
   - {fileID: 1030912093}
+  - {fileID: 300055362}
   - {fileID: 187334210}

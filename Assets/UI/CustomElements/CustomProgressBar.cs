@@ -44,14 +44,14 @@ public partial class CustomProgressBar : BindableElement
         //     Debug.Log("CHANGE");
         //     Debug.Log(e.newValue);
         // });
-        RegisterCallback<AttachToPanelEvent>(e =>
-        {
-            Debug.Log("A");
-        });
-        RegisterCallback<DetachFromPanelEvent>(e =>
-        {
-            Debug.Log("D");
-        });
+        // RegisterCallback<AttachToPanelEvent>(e =>
+        // {
+        //     Debug.Log("A");
+        // });
+        // RegisterCallback<DetachFromPanelEvent>(e =>
+        // {
+        //     Debug.Log("D");
+        // });
     }
 
     private void UpdateProgressBar()

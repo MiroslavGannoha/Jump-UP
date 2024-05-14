@@ -11,9 +11,6 @@ public class PlayerController : MonoBehaviour
     private Energy energyState;
 
     [SerializeField]
-    private LineAimer lineAimer;
-
-    [SerializeField]
     private float rechargeDelay = 2f;
 
     [SerializeField]
@@ -24,27 +21,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private AnimancerComponent _Animancer;
 
-    [SerializeField]
-    private AnimationClip _Move;
+    private AnimationController _AnimationController;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        _AnimationController = GetComponent<AnimationController>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        lineAimer.OnAiming.AddListener(OnAiming);
-        lineAimer.OnAimingEnd.AddListener(OnAimingEnd);
+        // lineAimer.OnAimingEnd.AddListener(OnAimingEnd);
         RechargeEnergy();
-        _Animancer.Play(_Move);
+        // _Animancer.Play(_Move);
     }
 
-    // Update is called once per frame
-    void Update() { }
-
-    private void OnAimingEnd(float strength, Vector3 direction)
+    public void PerformJump(float strength, Vector3 direction)
     {
         var limitedCost = Math.Min(strength, 10f) / 10;
         float energyToSpend = Math.Min(limitedCost, energyState.energy);
@@ -59,9 +52,32 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(restoreEnergyCoroutine);
     }
 
-    private void OnAiming(float strength, Vector3 direction)
+    public void CancelJump()
     {
-        Debug.Log(strength);
+        energyState.cost = 0;
+
+        if (restoreEnergyCoroutine == null)
+        {
+            restoreEnergyCoroutine = RechargeEnergy();
+            StartCoroutine(restoreEnergyCoroutine);
+        }
+    }
+
+    public void UpdateRotation(float strength, Vector3 direction)
+    {   
+        if (strength < 1) return;
+        if (direction.x < 0)
+        {
+            _AnimationController.RotateLeft();
+        }
+        else if (direction.x > 0)
+        {
+            _AnimationController.RotateRight();
+        }
+    }
+
+    public void DisplayEnergyCost(float strength, Vector3 direction)
+    {
         var limitedCost = Math.Min(strength, 10f) / 10;
         energyState.cost = limitedCost / energyState.energy;
     }
@@ -73,6 +89,40 @@ public class PlayerController : MonoBehaviour
         {
             energyState.energy += 0.005f;
             yield return new WaitForSeconds(0.01f);
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Terrain"))
+        {
+            {
+                Vector3 hit = collision.contacts[0].normal;
+                float angle = Vector3.Angle(hit, Vector3.up);
+
+                if (Mathf.Approximately(angle, 0))
+                {
+                    //Down
+                    _AnimationController.OnEnable();
+                }
+                if (Mathf.Approximately(angle, 180))
+                {
+                    //Up
+                }
+                if (Mathf.Approximately(angle, 90))
+                {
+                    // Sides
+                    Vector3 cross = Vector3.Cross(Vector3.forward, hit);
+                    if (cross.y > 0)
+                    { // left side of the player
+                        _AnimationController.RotateRight();
+                    }
+                    else
+                    { // right side of the player
+                        _AnimationController.RotateLeft();
+                    }
+                }
+            }
         }
     }
 }
