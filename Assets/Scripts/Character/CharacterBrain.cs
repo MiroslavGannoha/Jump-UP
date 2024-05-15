@@ -16,6 +16,7 @@ public sealed class BasicCharacterBrain : MonoBehaviour
 
     [SerializeField]
     private CharacterState _PrepareingToJump;
+    public CharacterState LastRotationState = new RotateRightState();
 
     private void Update()
     {
@@ -46,13 +47,24 @@ public sealed class BasicCharacterBrain : MonoBehaviour
     {
         if (strength < 1)
             return;
-        var state = direction.x < 0 ? _RotateLeft : _RotateRight;
-        if(_Character.StateMachine.CurrentState != state) {
-            Debug.Log(_Character.StateMachine.CurrentState != state);
-            _Character.StateMachine.ForceSetState(state);
-            state.CompleteEvent.AddListener(() => Debug.Log("CompleteEvent"));
+        var currentState = _Character.StateMachine.CurrentState;
+        var rotateState = direction.x < 0 ? _RotateLeft : _RotateRight;
+        if (
+            rotateState != LastRotationState
+            && (
+                currentState == _PrepareingToJump
+                || currentState == _Character.StateMachine.DefaultState
+            )
+        )
+        {
+            LastRotationState = rotateState;
+            _Character.StateMachine.ForceSetState(rotateState);
+            rotateState.CompleteEvent.AddListener(
+                () => _Character.StateMachine.ForceSetState(_PrepareingToJump)
+            );
         }
-    
-            // state.CompleteEvent.AddListener(() => _Character.StateMachine.ForceSetState(_PrepareingToJump));
+        // if (_Character.Animancer.gameObject.transform.rotation.y > 0)
+
+        // state.CompleteEvent.AddListener(() => _Character.StateMachine.ForceSetState(_PrepareingToJump));
     }
 }

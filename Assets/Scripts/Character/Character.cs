@@ -28,7 +28,6 @@ public sealed class Character : MonoBehaviour
     [SerializeField]
     private CharacterState.StateMachine _StateMachine;
     public CharacterState.StateMachine StateMachine => _StateMachine;
-
     // [SerializeField]
     // private CharacterState _Idle;
 
