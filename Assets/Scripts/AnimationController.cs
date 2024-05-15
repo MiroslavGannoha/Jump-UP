@@ -55,7 +55,7 @@ public class AnimationController : MonoBehaviour
 
     public void OnEnable()
     {
-        _Animancer.Layers[0].Play(_Idle);
+        // _Animancer.Layers[0].Play(_Idle);
     }
 
     // Update is called once per frame
@@ -109,7 +109,6 @@ public class AnimationController : MonoBehaviour
     {
         if (_Animancer.gameObject.transform.rotation.y > 0)
         {
-            _Animancer.Stop();
             _Animancer.Layers[1].Play(_RotateLeft);
             _Animancer.Layers[0].Play(_JumpSimple);
             StartJump();
@@ -121,7 +120,6 @@ public class AnimationController : MonoBehaviour
     {
         if (_Animancer.gameObject.transform.rotation.y < 0)
         {
-            _Animancer.Stop();
             _Animancer.Layers[1].Play(_RotateRight);
             _Animancer.Layers[0].Play(_JumpSimple);
             StartJump();

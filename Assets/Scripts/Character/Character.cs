@@ -3,7 +3,8 @@ using System.Collections;
 using Animancer;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+[DefaultExecutionOrder(-10000)]
+public sealed class Character : MonoBehaviour
 {
     private Rigidbody rb;
 
@@ -20,13 +21,23 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private AnimancerComponent _Animancer;
+    public AnimancerComponent Animancer => _Animancer;
 
-    private AnimationController _AnimationController;
+    // private AnimationController _AnimationController;
+
+    [SerializeField]
+    private CharacterState.StateMachine _StateMachine;
+    public CharacterState.StateMachine StateMachine => _StateMachine;
+
+    // [SerializeField]
+    // private CharacterState _Idle;
 
     private void Awake()
     {
+        StateMachine.InitializeAfterDeserialize();
+        // StateMachine.DefaultState = _Idle;
         rb = GetComponent<Rigidbody>();
-        _AnimationController = GetComponent<AnimationController>();
+        // _AnimationController = GetComponent<AnimationController>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -63,19 +74,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void UpdateRotation(float strength, Vector3 direction)
-    {   
-        if (strength < 1) return;
-        if (direction.x < 0)
-        {
-            _AnimationController.RotateLeft();
-        }
-        else if (direction.x > 0)
-        {
-            _AnimationController.RotateRight();
-        }
-    }
-
     public void DisplayEnergyCost(float strength, Vector3 direction)
     {
         var limitedCost = Math.Min(strength, 10f) / 10;
@@ -103,7 +101,7 @@ public class PlayerController : MonoBehaviour
                 if (Mathf.Approximately(angle, 0))
                 {
                     //Down
-                    _AnimationController.OnEnable();
+                    // _AnimationController.OnEnable();
                 }
                 if (Mathf.Approximately(angle, 180))
                 {
@@ -115,11 +113,11 @@ public class PlayerController : MonoBehaviour
                     Vector3 cross = Vector3.Cross(Vector3.forward, hit);
                     if (cross.y > 0)
                     { // left side of the player
-                        _AnimationController.RotateRight();
+                        // _AnimationController.RotateRight();
                     }
                     else
                     { // right side of the player
-                        _AnimationController.RotateLeft();
+                        // _AnimationController.RotateLeft();
                     }
                 }
             }
