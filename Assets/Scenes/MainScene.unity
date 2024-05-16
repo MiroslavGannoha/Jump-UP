@@ -518,6 +518,21 @@ MonoBehaviour:
   _StateMachine:
     _CurrentState: {fileID: 300055370}
     _DefaultState: {fileID: 300055370}
+  CollisionEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 934715166}
+        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+        m_MethodName: HandleCollision
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &300055365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,9 +608,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 934715166}
-        m_TargetAssemblyTypeName: BasicCharacterBrain, Assembly-CSharp
-        m_MethodName: MakeJump
-        m_Mode: 0
+        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+        m_MethodName: StartFlying
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1194,7 +1209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
-  _Jump: {fileID: 934715168}
+  _Flying: {fileID: 934715168}
   _RotateLeft: {fileID: 934715165}
   _RotateRight: {fileID: 934715164}
   _PrepareingToJump: {fileID: 934715167}

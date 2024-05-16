@@ -34,6 +34,23 @@ public abstract class CharacterState : StateBehaviour
     public virtual bool CanInterruptSelf => false;
     public UnityEvent CompleteEvent = new UnityEvent();
 
+    public UnityAction SubscribeComplete(UnityAction fn)
+    {
+        // Add the listener
+        CompleteEvent.AddListener(fn);
+        // Return an action that, when called, will remove the listener.
+        return () => CompleteEvent.RemoveListener(fn);
+    }
+
+    public void SubscribeCompleteOnce(UnityAction fn)
+    {
+        CompleteEvent.AddListener(() => {
+            fn();
+            CompleteEvent.RemoveListener(fn);
+        });
+
+    }
+
     public override bool CanExitState
     {
         get

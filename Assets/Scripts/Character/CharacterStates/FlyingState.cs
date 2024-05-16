@@ -1,7 +1,7 @@
 using Animancer;
 using UnityEngine;
 
-public sealed class JumpState : CharacterState
+public sealed class FlyingState : CharacterState
 {
     [SerializeField]
     private ClipTransition _Animation;

@@ -6,7 +6,7 @@ public sealed class InputHandler : MonoBehaviour
     private Character _Character;
 
     [SerializeField]
-    private CharacterState _Jump;
+    private CharacterState _Flying;
 
     [SerializeField]
     private CharacterState _RotateLeft;
@@ -18,10 +18,11 @@ public sealed class InputHandler : MonoBehaviour
     private CharacterState _PrepareingToJump;
     public CharacterState LastRotationState;
 
-    // private void Awake()
-    // {
-    //     LastRotationState = _RotateRight;
-    // }
+    private void Awake()
+    {
+        _RotateRight.SubscribeComplete(() => LastRotationState = _RotateRight);
+        _RotateLeft.SubscribeComplete(() => LastRotationState = _RotateLeft);
+    }
 
     public void UpdateRotation(float strength, Vector3 direction)
     {
@@ -37,13 +38,9 @@ public sealed class InputHandler : MonoBehaviour
             )
         )
         {
-            LastRotationState = rotateState;
+            // LastRotationState = rotateState;
             _Character.StateMachine.ForceSetState(rotateState);
-            rotateState.CompleteEvent.AddListener(() =>
-            {
-                _Character.StateMachine.ForceSetState(_PrepareingToJump);
-                rotateState.CompleteEvent.RemoveAllListeners();
-            });
+            rotateState.SubscribeCompleteOnce(() =>_Character.StateMachine.ForceSetState(_PrepareingToJump));
         }
         else if (currentState == _Character.StateMachine.DefaultState)
         {
@@ -54,13 +51,35 @@ public sealed class InputHandler : MonoBehaviour
         // state.CompleteEvent.AddListener(() => _Character.StateMachine.ForceSetState(_PrepareingToJump));
     }
 
-    public void MakeJump()
+    public void StartFlying()
     {
-        _Character.StateMachine.ForceSetState(_Jump);
+        _Character.StateMachine.ForceSetState(_Flying);
     }
 
     public void SetDefaultState()
     {
         _Character.StateMachine.ForceSetState(_Character.StateMachine.DefaultState);
+    }
+
+    public void HandleCollision(CollisionSide collisionSide)
+    {
+        switch (collisionSide)
+        {
+            case CollisionSide.Left:
+                _Character.StateMachine.ForceSetState(_RotateRight);
+                _RotateRight.SubscribeCompleteOnce(StartFlying);
+                break;
+            case CollisionSide.Right:
+            // if(LastRotationState == _RotateRight) {}
+                _Character.StateMachine.ForceSetState(_RotateLeft);
+                _RotateLeft.SubscribeCompleteOnce(StartFlying);
+                break;
+            case CollisionSide.Up:
+                // _Character.StateMachine.ForceSetState(_PrepareingToJump);
+                break;
+            case CollisionSide.Down:
+                _Character.StateMachine.ForceSetState(_Character.StateMachine.DefaultState);
+                break;
+        }
     }
 }

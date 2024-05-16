@@ -2,6 +2,15 @@ using System;
 using System.Collections;
 using Animancer;
 using UnityEngine;
+using UnityEngine.Events;
+
+public enum CollisionSide
+{
+    Up,
+    Down,
+    Left,
+    Right
+}
 
 [DefaultExecutionOrder(-10000)]
 public sealed class Character : MonoBehaviour
@@ -23,13 +32,11 @@ public sealed class Character : MonoBehaviour
     private AnimancerComponent _Animancer;
     public AnimancerComponent Animancer => _Animancer;
 
-    // private AnimationController _AnimationController;
-
     [SerializeField]
     private CharacterState.StateMachine _StateMachine;
     public CharacterState.StateMachine StateMachine => _StateMachine;
-    // [SerializeField]
-    // private CharacterState _Idle;
+
+    public UnityEvent<CollisionSide> CollisionEvent = new UnityEvent<CollisionSide>();
 
     private void Awake()
     {
@@ -100,23 +107,24 @@ public sealed class Character : MonoBehaviour
                 if (Mathf.Approximately(angle, 0))
                 {
                     //Down
-                    // _AnimationController.OnEnable();
+                    CollisionEvent.Invoke(CollisionSide.Down);
                 }
                 if (Mathf.Approximately(angle, 180))
                 {
                     //Up
+                    CollisionEvent.Invoke(CollisionSide.Up);
                 }
                 if (Mathf.Approximately(angle, 90))
                 {
                     // Sides
                     Vector3 cross = Vector3.Cross(Vector3.forward, hit);
                     if (cross.y > 0)
-                    { // left side of the player
-                        // _AnimationController.RotateRight();
+                    {
+                        CollisionEvent.Invoke(CollisionSide.Left);
                     }
                     else
-                    { // right side of the player
-                        // _AnimationController.RotateLeft();
+                    {
+                        CollisionEvent.Invoke(CollisionSide.Right);
                     }
                 }
             }
