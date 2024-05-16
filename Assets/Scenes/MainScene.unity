@@ -577,11 +577,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 934715166}
+        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+        m_MethodName: SetDefaultState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnAimingEnd:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 934715166}
+        m_TargetAssemblyTypeName: BasicCharacterBrain, Assembly-CSharp
+        m_MethodName: MakeJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 300055364}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_TargetAssemblyTypeName: Character, Assembly-CSharp
         m_MethodName: PerformJump
         m_Mode: 0
         m_Arguments:
@@ -1044,8 +1068,9 @@ GameObject:
   - component: {fileID: 934715165}
   - component: {fileID: 934715164}
   - component: {fileID: 934715167}
+  - component: {fileID: 934715168}
   m_Layer: 0
-  m_Name: Brain
+  m_Name: InputHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1169,11 +1194,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
-  _Jump: {fileID: 0}
+  _Jump: {fileID: 934715168}
   _RotateLeft: {fileID: 934715165}
   _RotateRight: {fileID: 934715164}
   _PrepareingToJump: {fileID: 934715167}
-  LastRotationState: {fileID: 0}
+  LastRotationState: {fileID: 934715164}
 --- !u!114 &934715167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,9 +1228,34 @@ MonoBehaviour:
           _NormalizedTimes: []
           _Callbacks: []
           _Names: []
-        _Clip: {fileID: 7400022, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
-        _Speed: 1
+        _Clip: {fileID: 7400028, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
+        _Speed: 0.3
         _NormalizedStartTime: NaN
+--- !u!114 &934715168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934715162}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0263352c9c390d41923099719a260ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Character: {fileID: 300055364}
+  CompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _Animation:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400012, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
 --- !u!1 &1030912090
 GameObject:
   m_ObjectHideFlags: 0

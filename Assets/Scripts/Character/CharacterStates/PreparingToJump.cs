@@ -15,6 +15,11 @@ public sealed class PreparingToJump : CharacterState
         Character.Animancer.Play(_Animation);
     }
 
+    private void OnDisable()
+    {
+        Character.Animancer.Stop(_Animation);
+    }
+
     private void Awake()
     {
         // _Animation.Events.OnEnd = Character.StateMachine.ForceSetDefaultState;
