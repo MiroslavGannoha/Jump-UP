@@ -1,7 +1,7 @@
 using Animancer;
 using UnityEngine;
 
-public sealed class ActionState : CharacterState
+public sealed class JumpState : CharacterState
 {
     [SerializeField]
     private ClipTransition _Animation;
@@ -17,6 +17,6 @@ public sealed class ActionState : CharacterState
 
     private void Awake()
     {
-        _Animation.Events.OnEnd = Character.StateMachine.ForceSetDefaultState;
+        // _Animation.Events.OnEnd = Character.StateMachine.ForceSetDefaultState;
     }
 }
