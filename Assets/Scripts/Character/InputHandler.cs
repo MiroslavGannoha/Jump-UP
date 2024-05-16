@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public sealed class BasicCharacterBrain : MonoBehaviour
+public sealed class InputHandler : MonoBehaviour
 {
     [SerializeField]
     private Character _Character;
@@ -16,32 +16,12 @@ public sealed class BasicCharacterBrain : MonoBehaviour
 
     [SerializeField]
     private CharacterState _PrepareingToJump;
-    public CharacterState LastRotationState = new RotateRightState();
+    public CharacterState LastRotationState;
 
-    private void Update()
-    {
-        // UpdateMovement();
-        // UpdateAction();
-    }
-
-    private void UpdateMovement()
-    {
-        // float forward = ExampleInput.WASD.y;
-        // if (forward > 0)
-        // {
-        //     _Character.StateMachine.TrySetState(_Move);
-        // }
-        // else
-        // {
-        //     _Character.StateMachine.TrySetDefaultState();
-        // }
-    }
-
-    private void UpdateAction()
-    {
-        // if (ExampleInput.LeftMouseUp)
-        //     _Character.StateMachine.TryResetState(_Action);
-    }
+    // private void Awake()
+    // {
+    //     LastRotationState = _RotateRight;
+    // }
 
     public void UpdateRotation(float strength, Vector3 direction)
     {
@@ -59,12 +39,28 @@ public sealed class BasicCharacterBrain : MonoBehaviour
         {
             LastRotationState = rotateState;
             _Character.StateMachine.ForceSetState(rotateState);
-            rotateState.CompleteEvent.AddListener(
-                () => _Character.StateMachine.ForceSetState(_PrepareingToJump)
-            );
+            rotateState.CompleteEvent.AddListener(() =>
+            {
+                _Character.StateMachine.ForceSetState(_PrepareingToJump);
+                rotateState.CompleteEvent.RemoveAllListeners();
+            });
+        }
+        else if (currentState == _Character.StateMachine.DefaultState)
+        {
+            _Character.StateMachine.ForceSetState(_PrepareingToJump);
         }
         // if (_Character.Animancer.gameObject.transform.rotation.y > 0)
 
         // state.CompleteEvent.AddListener(() => _Character.StateMachine.ForceSetState(_PrepareingToJump));
+    }
+
+    public void MakeJump()
+    {
+        _Character.StateMachine.ForceSetState(_Jump);
+    }
+
+    public void SetDefaultState()
+    {
+        _Character.StateMachine.ForceSetState(_Character.StateMachine.DefaultState);
     }
 }
