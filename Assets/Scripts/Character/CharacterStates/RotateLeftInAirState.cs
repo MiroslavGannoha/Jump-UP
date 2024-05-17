@@ -1,13 +1,13 @@
 using Animancer;
 using UnityEngine;
 
-public sealed class RotateLeftState : CharacterState
+public sealed class RotateLeftInAirState : CharacterState
 {
     [SerializeReference]
     private ClipTransition _Rotate;
 
-    [SerializeReference]
-    private ClipTransition _Jump;
+    // [SerializeReference]
+    // private ClipTransition _Jump;
 
     public override CharacterStatePriority Priority => CharacterStatePriority.Medium;
 
@@ -15,16 +15,9 @@ public sealed class RotateLeftState : CharacterState
 
     private void OnEnable()
     {
-        Character.Animancer.Layers[0].Play(_Jump);
-        var state = Character.Animancer.Layers[1].Play(_Rotate);
-        // state.Weight = 0.5f;
+        // Character.Animancer.Layers[0].Play(_Jump);
+        Character.Animancer.Layers[1].Play(_Rotate);
         // jumpState.NormalizedTime = 0;
-        state.NormalizedTime = 0;
-    }
-
-    private void OnDisable()
-    {
-        // Character.Animancer.Stop(_Rotate);
     }
 
     private void Awake()
@@ -35,11 +28,12 @@ public sealed class RotateLeftState : CharacterState
         //     Character.Animancer.Layers[1].Stop();
         //     _Rotate.Events.Clear();
         // };
-        _Jump.Events.OnEnd = () =>
+        _Rotate.Events.OnEnd = () =>
         {
+            Debug.Log("RotateLeftInAirState.OnEnd");
+            // Character.Animancer.Stop(_Rotate);
             CompleteEvent.Invoke();
             // Character.Animancer.Layers[0].Stop();
-            Character.Animancer.Stop(_Jump);
         };
     }
 }
