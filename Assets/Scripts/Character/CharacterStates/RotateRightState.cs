@@ -21,7 +21,7 @@ public sealed class RotateRightState : CharacterState
 
     // private void OnDisable()
     // {
-    //     Character.Animancer.Layers[1].Stop();
+    //     // Character.Animancer.Stop(_Rotate);
     // }
 
     private void Awake()

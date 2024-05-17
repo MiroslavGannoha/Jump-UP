@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public sealed class InputHandler : MonoBehaviour
@@ -6,13 +7,19 @@ public sealed class InputHandler : MonoBehaviour
     private Character _Character;
 
     [SerializeField]
-    private CharacterState _Flying;
+    private CharacterState _FlyingState;
 
     [SerializeField]
-    private CharacterState _RotateLeft;
+    private CharacterState _RotateLeftState;
 
     [SerializeField]
-    private CharacterState _RotateRight;
+    private CharacterState _RotateRightState;
+
+    [SerializeField]
+    private CharacterState _RotateLeftInAirState;
+
+    [SerializeField]
+    private CharacterState _RotateRightInAirState;
 
     [SerializeField]
     private CharacterState _PrepareingToJump;
@@ -20,8 +27,10 @@ public sealed class InputHandler : MonoBehaviour
 
     private void Awake()
     {
-        _RotateRight.SubscribeComplete(() => LastRotationState = _RotateRight);
-        _RotateLeft.SubscribeComplete(() => LastRotationState = _RotateLeft);
+        _RotateRightState.SubscribeComplete(() => LastRotationState = _RotateRightState);
+        _RotateRightInAirState.SubscribeComplete(() => LastRotationState = _RotateRightState);
+        _RotateLeftState.SubscribeComplete(() => LastRotationState = _RotateLeftState);
+        _RotateLeftInAirState.SubscribeComplete(() => LastRotationState = _RotateLeftState);
     }
 
     public void UpdateRotation(float strength, Vector3 direction)
@@ -29,18 +38,20 @@ public sealed class InputHandler : MonoBehaviour
         if (strength < 1)
             return;
         var currentState = _Character.StateMachine.CurrentState;
-        var rotateState = direction.x < 0 ? _RotateLeft : _RotateRight;
+        var rotateState = direction.x < 0 ? _RotateLeftState : _RotateRightState;
         if (
             rotateState != LastRotationState
-            && (
-                currentState == _PrepareingToJump
-                || currentState == _Character.StateMachine.DefaultState
-            )
+            // && (
+            //     currentState == _PrepareingToJump
+            //     || currentState == _Character.StateMachine.DefaultState
+            // )
         )
         {
             // LastRotationState = rotateState;
             _Character.StateMachine.ForceSetState(rotateState);
-            rotateState.SubscribeCompleteOnce(() =>_Character.StateMachine.ForceSetState(_PrepareingToJump));
+            rotateState.SubscribeComplete(
+                () => _Character.StateMachine.ForceSetState(_PrepareingToJump)
+            );
         }
         else if (currentState == _Character.StateMachine.DefaultState)
         {
@@ -53,7 +64,7 @@ public sealed class InputHandler : MonoBehaviour
 
     public void StartFlying()
     {
-        _Character.StateMachine.ForceSetState(_Flying);
+        _Character.StateMachine.ForceSetState(_FlyingState);
     }
 
     public void SetDefaultState()
@@ -66,16 +77,15 @@ public sealed class InputHandler : MonoBehaviour
         switch (collisionSide)
         {
             case CollisionSide.Left:
-                _Character.StateMachine.ForceSetState(_RotateRight);
-                _RotateRight.SubscribeCompleteOnce(StartFlying);
+                _Character.StateMachine.ForceSetState(_RotateRightInAirState);
+                _RotateRightInAirState.SubscribeComplete(StartFlying);
                 break;
             case CollisionSide.Right:
-            // if(LastRotationState == _RotateRight) {}
-                _Character.StateMachine.ForceSetState(_RotateLeft);
-                _RotateLeft.SubscribeCompleteOnce(StartFlying);
+                // Console.WriteLine($"LastRotationState {LastRotationState}", DateTime.Now);
+                _Character.StateMachine.ForceSetState(_RotateLeftInAirState);
+                _RotateLeftInAirState.SubscribeComplete(StartFlying);
                 break;
             case CollisionSide.Up:
-                // _Character.StateMachine.ForceSetState(_PrepareingToJump);
                 break;
             case CollisionSide.Down:
                 _Character.StateMachine.ForceSetState(_Character.StateMachine.DefaultState);

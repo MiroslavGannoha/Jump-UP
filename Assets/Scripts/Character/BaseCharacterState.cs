@@ -29,6 +29,16 @@ public abstract class CharacterState : StateBehaviour
     //     }
     // #endif
 
+    void OnEnable()
+    {
+        SubscribeComplete(() => Debug.Log($"{GetType().Name}.OnEnd"));
+    }
+
+    void OnDisable()
+    {
+        CompleteEvent.RemoveAllListeners();
+    }
+
     public virtual CharacterStatePriority Priority => CharacterStatePriority.Low;
 
     public virtual bool CanInterruptSelf => false;
@@ -40,15 +50,6 @@ public abstract class CharacterState : StateBehaviour
         CompleteEvent.AddListener(fn);
         // Return an action that, when called, will remove the listener.
         return () => CompleteEvent.RemoveListener(fn);
-    }
-
-    public void SubscribeCompleteOnce(UnityAction fn)
-    {
-        CompleteEvent.AddListener(() => {
-            fn();
-            CompleteEvent.RemoveListener(fn);
-        });
-
     }
 
     public override bool CanExitState
