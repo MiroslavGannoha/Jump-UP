@@ -23,6 +23,6 @@ public sealed class PreparingToJump : CharacterState
     private void Awake()
     {
         // _Animation.Events.OnEnd = Character.StateMachine.ForceSetDefaultState;
-        _Animation.Events.OnEnd = CompleteEvent.Invoke;
+        _Animation.Events.OnEnd = AnimEndEvent.Invoke;
     }
 }

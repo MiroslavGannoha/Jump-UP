@@ -9,37 +9,26 @@ public sealed class RotateLeftState : CharacterState
     [SerializeReference]
     private ClipTransition _Jump;
 
-    public override CharacterStatePriority Priority => CharacterStatePriority.Medium;
+    public override CharacterStatePriority Priority => CharacterStatePriority.High;
 
     public override bool CanInterruptSelf => true;
 
-    private void OnEnable()
+    public override void OnEnter()
     {
         Character.Animancer.Layers[0].Play(_Jump);
-        var state = Character.Animancer.Layers[1].Play(_Rotate);
+        Character.Animancer.Layers[1].Play(_Rotate);
         // state.Weight = 0.5f;
         // jumpState.NormalizedTime = 0;
-        state.NormalizedTime = 0;
-    }
-
-    private void OnDisable()
-    {
-        // Character.Animancer.Stop(_Rotate);
+        // state.NormalizedTime = 0;
     }
 
     private void Awake()
     {
-        // _Animation.Events.OnEnd = CompleteEvent.Invoke;
-        // _Animation.Events.OnEnd = () => Debug.Log("RotateLeftState.OnEnd");
-        // _Rotate.Events.OnEnd = () => {
-        //     Character.Animancer.Layers[1].Stop();
-        //     _Rotate.Events.Clear();
-        // };
         _Jump.Events.OnEnd = () =>
         {
-            CompleteEvent.Invoke();
-            // Character.Animancer.Layers[0].Stop();
             Character.Animancer.Stop(_Jump);
+            // Character.Animancer.Stop(_Rotate);
+            AnimEndEvent.Invoke();
         };
     }
 }

@@ -19,6 +19,11 @@ public abstract class CharacterState : StateBehaviour
     [SerializeField]
     private Character _Character;
     public Character Character => _Character;
+    public virtual CharacterStatePriority Priority => CharacterStatePriority.Low;
+    public virtual bool CanInterruptSelf => false;
+    public UnityEvent AnimEndEvent = new UnityEvent();
+    public UnityEvent ExitStateEvent = new UnityEvent();
+    public UnityEvent EnterStateEvent = new UnityEvent();
 
     // #if UNITY_EDITOR
     //     protected override void OnValidate()
@@ -31,25 +36,40 @@ public abstract class CharacterState : StateBehaviour
 
     void OnEnable()
     {
-        SubscribeComplete(() => Debug.Log($"{GetType().Name}.OnEnd"));
+        SubscribeAnimEnd(() => Debug.Log($"{GetType().Name} Anim Ended"));
+        EnterStateEvent.Invoke();
+        OnEnter();
     }
 
     void OnDisable()
     {
-        CompleteEvent.RemoveAllListeners();
+        AnimEndEvent.RemoveAllListeners();
+        ExitStateEvent.Invoke();
+        // ExitStateEvent.RemoveAllListeners();
+        // EnterStateEvent.RemoveAllListeners();
+        OnExit();
     }
 
-    public virtual CharacterStatePriority Priority => CharacterStatePriority.Low;
+    public virtual void OnEnter() { }
 
-    public virtual bool CanInterruptSelf => false;
-    public UnityEvent CompleteEvent = new UnityEvent();
+    public virtual void OnExit() { }
 
-    public UnityAction SubscribeComplete(UnityAction fn)
+    public UnityAction SubscribeAnimEnd(UnityAction fn)
     {
-        // Add the listener
-        CompleteEvent.AddListener(fn);
-        // Return an action that, when called, will remove the listener.
-        return () => CompleteEvent.RemoveListener(fn);
+        AnimEndEvent.AddListener(fn);
+        return () => AnimEndEvent.RemoveListener(fn);
+    }
+
+    public UnityAction SubscribeExitState(UnityAction fn)
+    {
+        ExitStateEvent.AddListener(fn);
+        return () => ExitStateEvent.RemoveListener(fn);
+    }
+
+    public UnityAction SubscribeEnterState(UnityAction fn)
+    {
+        EnterStateEvent.AddListener(fn);
+        return () => EnterStateEvent.RemoveListener(fn);
     }
 
     public override bool CanExitState

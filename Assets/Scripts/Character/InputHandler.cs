@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public sealed class InputHandler : MonoBehaviour
@@ -27,10 +28,10 @@ public sealed class InputHandler : MonoBehaviour
 
     private void Awake()
     {
-        _RotateRightState.SubscribeComplete(() => LastRotationState = _RotateRightState);
-        _RotateRightInAirState.SubscribeComplete(() => LastRotationState = _RotateRightState);
-        _RotateLeftState.SubscribeComplete(() => LastRotationState = _RotateLeftState);
-        _RotateLeftInAirState.SubscribeComplete(() => LastRotationState = _RotateLeftState);
+        _RotateRightState.SubscribeEnterState(() => LastRotationState = _RotateRightState);
+        _RotateRightInAirState.SubscribeEnterState(() => LastRotationState = _RotateRightState);
+        _RotateLeftState.SubscribeEnterState(() => LastRotationState = _RotateLeftState);
+        _RotateLeftInAirState.SubscribeEnterState(() => LastRotationState = _RotateLeftState);
     }
 
     public void UpdateRotation(float strength, Vector3 direction)
@@ -48,8 +49,8 @@ public sealed class InputHandler : MonoBehaviour
         )
         {
             // LastRotationState = rotateState;
-            _Character.StateMachine.ForceSetState(rotateState);
-            rotateState.SubscribeComplete(
+            _Character.StateMachine.TrySetState(rotateState);
+            rotateState.SubscribeAnimEnd(
                 () => _Character.StateMachine.ForceSetState(_PrepareingToJump)
             );
         }
@@ -78,12 +79,12 @@ public sealed class InputHandler : MonoBehaviour
         {
             case CollisionSide.Left:
                 _Character.StateMachine.ForceSetState(_RotateRightInAirState);
-                _RotateRightInAirState.SubscribeComplete(StartFlying);
+                _RotateRightInAirState.SubscribeAnimEnd(StartFlying);
                 break;
             case CollisionSide.Right:
                 // Console.WriteLine($"LastRotationState {LastRotationState}", DateTime.Now);
                 _Character.StateMachine.ForceSetState(_RotateLeftInAirState);
-                _RotateLeftInAirState.SubscribeComplete(StartFlying);
+                _RotateLeftInAirState.SubscribeAnimEnd(StartFlying);
                 break;
             case CollisionSide.Up:
                 break;

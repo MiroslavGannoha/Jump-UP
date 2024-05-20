@@ -205,7 +205,7 @@ PrefabInstance:
     - target: {fileID: 2551892347925612377, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2551892347925612379, guid: f2d37b34e3e70a545afb6ca990777dd6,
         type: 3}
@@ -711,7 +711,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
-  CompleteEvent:
+  AnimEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ExitStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EnterStateEvent:
     m_PersistentCalls:
       m_Calls: []
   _Animation:
@@ -1121,7 +1127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
-  CompleteEvent:
+  AnimEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ExitStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EnterStateEvent:
     m_PersistentCalls:
       m_Calls: []
   _Rotate:
@@ -1134,7 +1146,7 @@ MonoBehaviour:
     - rid: 7141722000775446616
       type: {class: ClipTransition, ns: Animancer, asm: Animancer}
       data:
-        _FadeDuration: 0.25
+        _FadeDuration: 0
         _Events:
           _NormalizedTimes: []
           _Callbacks: []
@@ -1166,7 +1178,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
-  CompleteEvent:
+  AnimEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ExitStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EnterStateEvent:
     m_PersistentCalls:
       m_Calls: []
   _Rotate:
@@ -1179,7 +1197,7 @@ MonoBehaviour:
     - rid: 7141722000775446625
       type: {class: ClipTransition, ns: Animancer, asm: Animancer}
       data:
-        _FadeDuration: 0.25
+        _FadeDuration: 0
         _Events:
           _NormalizedTimes: []
           _Callbacks: []
@@ -1231,7 +1249,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
-  CompleteEvent:
+  AnimEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ExitStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EnterStateEvent:
     m_PersistentCalls:
       m_Calls: []
   _Animation:
@@ -1263,7 +1287,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
-  CompleteEvent:
+  AnimEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ExitStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EnterStateEvent:
     m_PersistentCalls:
       m_Calls: []
   _Animation:
@@ -1288,7 +1318,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
-  CompleteEvent:
+  AnimEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ExitStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EnterStateEvent:
     m_PersistentCalls:
       m_Calls: []
   _Rotate:
@@ -1299,7 +1335,7 @@ MonoBehaviour:
     - rid: 7141722021336973413
       type: {class: ClipTransition, ns: Animancer, asm: Animancer}
       data:
-        _FadeDuration: 0.25
+        _FadeDuration: 0
         _Events:
           _NormalizedTimes: []
           _Callbacks: []
@@ -1320,7 +1356,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
-  CompleteEvent:
+  AnimEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ExitStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EnterStateEvent:
     m_PersistentCalls:
       m_Calls: []
   _Rotate:
@@ -1331,7 +1373,7 @@ MonoBehaviour:
     - rid: 7141722021336973412
       type: {class: ClipTransition, ns: Animancer, asm: Animancer}
       data:
-        _FadeDuration: 0.25
+        _FadeDuration: 0
         _Events:
           _NormalizedTimes: []
           _Callbacks: []
