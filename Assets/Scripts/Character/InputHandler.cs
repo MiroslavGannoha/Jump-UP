@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public sealed class InputHandler : MonoBehaviour
@@ -48,7 +46,6 @@ public sealed class InputHandler : MonoBehaviour
             // )
         )
         {
-            // LastRotationState = rotateState;
             _Character.StateMachine.TrySetState(rotateState);
             rotateState.SubscribeAnimEnd(
                 () => _Character.StateMachine.ForceSetState(_PrepareingToJump)
@@ -58,9 +55,6 @@ public sealed class InputHandler : MonoBehaviour
         {
             _Character.StateMachine.ForceSetState(_PrepareingToJump);
         }
-        // if (_Character.Animancer.gameObject.transform.rotation.y > 0)
-
-        // state.CompleteEvent.AddListener(() => _Character.StateMachine.ForceSetState(_PrepareingToJump));
     }
 
     public void StartFlying()
@@ -82,7 +76,6 @@ public sealed class InputHandler : MonoBehaviour
                 _RotateRightInAirState.SubscribeAnimEnd(StartFlying);
                 break;
             case CollisionSide.Right:
-                // Console.WriteLine($"LastRotationState {LastRotationState}", DateTime.Now);
                 _Character.StateMachine.ForceSetState(_RotateLeftInAirState);
                 _RotateLeftInAirState.SubscribeAnimEnd(StartFlying);
                 break;
