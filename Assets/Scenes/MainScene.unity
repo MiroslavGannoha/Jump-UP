@@ -518,6 +518,9 @@ MonoBehaviour:
   _StateMachine:
     _CurrentState: {fileID: 300055370}
     _DefaultState: {fileID: 300055370}
+  _RotationStateMachine:
+    _CurrentState: {fileID: 934715172}
+    _DefaultState: {fileID: 934715172}
   CollisionEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1086,12 +1089,13 @@ GameObject:
   m_Component:
   - component: {fileID: 934715163}
   - component: {fileID: 934715166}
-  - component: {fileID: 934715165}
+  - component: {fileID: 934715172}
+  - component: {fileID: 934715173}
   - component: {fileID: 934715164}
+  - component: {fileID: 934715165}
   - component: {fileID: 934715167}
   - component: {fileID: 934715168}
-  - component: {fileID: 934715170}
-  - component: {fileID: 934715169}
+  - component: {fileID: 934715171}
   m_Layer: 0
   m_Name: InputHandler
   m_TagString: Untagged
@@ -1136,14 +1140,12 @@ MonoBehaviour:
   EnterStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  _Rotate:
-    rid: 7141722000775446616
-  _Jump:
-    rid: 7141722000775446617
+  _RotateAnim:
+    rid: 7141722133233401932
   references:
     version: 2
     RefIds:
-    - rid: 7141722000775446616
+    - rid: 7141722133233401932
       type: {class: ClipTransition, ns: Animancer, asm: Animancer}
       data:
         _FadeDuration: 0
@@ -1152,17 +1154,6 @@ MonoBehaviour:
           _Callbacks: []
           _Names: []
         _Clip: {fileID: 7400000, guid: 93f4efac91c2aeb45b552850726d291f, type: 2}
-        _Speed: 1
-        _NormalizedStartTime: NaN
-    - rid: 7141722000775446617
-      type: {class: ClipTransition, ns: Animancer, asm: Animancer}
-      data:
-        _FadeDuration: 0.25
-        _Events:
-          _NormalizedTimes: []
-          _Callbacks: []
-          _Names: []
-        _Clip: {fileID: 7400022, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
         _Speed: 1
         _NormalizedStartTime: NaN
 --- !u!114 &934715165
@@ -1187,14 +1178,12 @@ MonoBehaviour:
   EnterStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  _Rotate:
-    rid: 7141722000775446625
-  _Jump:
-    rid: 7141722000775446626
+  _RotateAnim:
+    rid: 7141722133233401931
   references:
     version: 2
     RefIds:
-    - rid: 7141722000775446625
+    - rid: 7141722133233401931
       type: {class: ClipTransition, ns: Animancer, asm: Animancer}
       data:
         _FadeDuration: 0
@@ -1203,17 +1192,6 @@ MonoBehaviour:
           _Callbacks: []
           _Names: []
         _Clip: {fileID: 7400000, guid: a0e56d49887fd9c468befb5de658d96b, type: 2}
-        _Speed: 1
-        _NormalizedStartTime: NaN
-    - rid: 7141722000775446626
-      type: {class: ClipTransition, ns: Animancer, asm: Animancer}
-      data:
-        _FadeDuration: 0.25
-        _Events:
-          _NormalizedTimes: []
-          _Callbacks: []
-          _Names: []
-        _Clip: {fileID: 7400022, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
         _Speed: 1
         _NormalizedStartTime: NaN
 --- !u!114 &934715166
@@ -1230,12 +1208,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
   _FlyingState: {fileID: 934715168}
+  _JumpState: {fileID: 934715171}
   _RotateLeftState: {fileID: 934715165}
   _RotateRightState: {fileID: 934715164}
-  _RotateLeftInAirState: {fileID: 934715170}
-  _RotateRightInAirState: {fileID: 934715169}
+  _LookRightState: {fileID: 934715172}
+  _LookLeftState: {fileID: 934715173}
   _PrepareingToJump: {fileID: 934715167}
-  LastRotationState: {fileID: 934715164}
 --- !u!114 &934715167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1305,7 +1283,7 @@ MonoBehaviour:
     _Clip: {fileID: 7400012, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
---- !u!114 &934715169
+--- !u!114 &934715171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1314,7 +1292,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 934715162}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 887111f19985b1845b1327ddc47d7b80, type: 3}
+  m_Script: {fileID: 11500000, guid: 45056163981df49498f3ae5594e7b01c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
@@ -1327,23 +1305,54 @@ MonoBehaviour:
   EnterStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  _Rotate:
-    rid: 7141722021336973413
+  _Animation:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400022, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+--- !u!114 &934715172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934715162}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3497e802f302bd04a8c6425334cf00b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Character: {fileID: 300055364}
+  AnimEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ExitStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EnterStateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _Anim:
+    rid: 7141722133233401925
   references:
     version: 2
     RefIds:
-    - rid: 7141722021336973413
+    - rid: 7141722133233401925
       type: {class: ClipTransition, ns: Animancer, asm: Animancer}
       data:
-        _FadeDuration: 0
+        _FadeDuration: 0.25
         _Events:
           _NormalizedTimes: []
           _Callbacks: []
           _Names: []
-        _Clip: {fileID: 7400000, guid: 93f4efac91c2aeb45b552850726d291f, type: 2}
+        _Clip: {fileID: 7400000, guid: ea0360a5fdaf2ac40b8e71ac9294e667, type: 2}
         _Speed: 1
         _NormalizedStartTime: NaN
---- !u!114 &934715170
+--- !u!114 &934715173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1352,7 +1361,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 934715162}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0d3d9cda144b0946901a11d475adb63, type: 3}
+  m_Script: {fileID: 11500000, guid: 866d403f3922b2e428b7fbf263822d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Character: {fileID: 300055364}
@@ -1365,20 +1374,20 @@ MonoBehaviour:
   EnterStateEvent:
     m_PersistentCalls:
       m_Calls: []
-  _Rotate:
-    rid: 7141722021336973412
+  _Anim:
+    rid: 7141722133233401926
   references:
     version: 2
     RefIds:
-    - rid: 7141722021336973412
+    - rid: 7141722133233401926
       type: {class: ClipTransition, ns: Animancer, asm: Animancer}
       data:
-        _FadeDuration: 0
+        _FadeDuration: 0.25
         _Events:
           _NormalizedTimes: []
           _Callbacks: []
           _Names: []
-        _Clip: {fileID: 7400000, guid: a0e56d49887fd9c468befb5de658d96b, type: 2}
+        _Clip: {fileID: 7400000, guid: ea0360a5fdaf2ac40b8e71ac9294e667, type: 2}
         _Speed: 1
         _NormalizedStartTime: NaN
 --- !u!1 &1030912090

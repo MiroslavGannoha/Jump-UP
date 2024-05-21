@@ -8,7 +8,7 @@ public sealed class RotateLeftInAirState : CharacterState
 
     public override CharacterStatePriority Priority => CharacterStatePriority.High;
 
-    public override bool CanInterruptSelf => true;
+    public override bool CanInterruptSelf => false;
 
     public override void OnEnter()
     {

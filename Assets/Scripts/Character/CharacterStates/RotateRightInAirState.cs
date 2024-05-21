@@ -8,7 +8,7 @@ public sealed class RotateRightInAirState : CharacterState
 
     public override CharacterStatePriority Priority => CharacterStatePriority.High;
 
-    public override bool CanInterruptSelf => true;
+    public override bool CanInterruptSelf => false;
     public override void OnEnter()
     {
         Character.Animancer.Layers[1].Play(_Rotate);

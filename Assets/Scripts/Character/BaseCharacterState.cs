@@ -14,7 +14,7 @@ public enum CharacterStatePriority
 public abstract class CharacterState : StateBehaviour
 {
     [System.Serializable]
-    public class StateMachine : StateMachine<CharacterState>.WithDefault { }
+    public class StateMachine : StateMachine<CharacterState>.WithDefault {}
 
     [SerializeField]
     private Character _Character;
@@ -37,16 +37,16 @@ public abstract class CharacterState : StateBehaviour
     void OnEnable()
     {
         SubscribeAnimEnd(() => Debug.Log($"{GetType().Name} Anim Ended"));
-        EnterStateEvent.Invoke();
         OnEnter();
+        EnterStateEvent.Invoke();
     }
 
     void OnDisable()
     {
         AnimEndEvent.RemoveAllListeners();
         ExitStateEvent.Invoke();
-        // ExitStateEvent.RemoveAllListeners();
-        // EnterStateEvent.RemoveAllListeners();
+        ExitStateEvent.RemoveAllListeners();
+        EnterStateEvent.RemoveAllListeners();
         OnExit();
     }
 

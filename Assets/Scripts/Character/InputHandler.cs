@@ -1,3 +1,5 @@
+using Animancer.FSM;
+using Animancer.Units;
 using UnityEngine;
 
 public sealed class InputHandler : MonoBehaviour
@@ -9,62 +11,91 @@ public sealed class InputHandler : MonoBehaviour
     private CharacterState _FlyingState;
 
     [SerializeField]
-    private CharacterState _RotateLeftState;
-
-    [SerializeField]
-    private CharacterState _RotateRightState;
-
-    [SerializeField]
-    private CharacterState _RotateLeftInAirState;
-
-    [SerializeField]
-    private CharacterState _RotateRightInAirState;
+    private CharacterState _JumpState;
 
     [SerializeField]
     private CharacterState _PrepareingToJump;
-    public CharacterState LastRotationState;
+
+    [SerializeField]
+    private CharacterRotationState _RotateLeftState;
+
+    [SerializeField]
+    private CharacterRotationState _RotateRightState;
+
+    [SerializeField]
+    private CharacterRotationState _LookRightState;
+
+    [SerializeField]
+    private CharacterRotationState _LookLeftState;
+
+    private StateMachine<CharacterRotationState>.InputBuffer _InputBuffer;
+
+    [SerializeField, Seconds]
+    private float _InputTimeOut = 0.5f;
+
+    private bool IsGrounded = true;
 
     private void Awake()
     {
-        _RotateRightState.SubscribeEnterState(() => LastRotationState = _RotateRightState);
-        _RotateRightInAirState.SubscribeEnterState(() => LastRotationState = _RotateRightState);
-        _RotateLeftState.SubscribeEnterState(() => LastRotationState = _RotateLeftState);
-        _RotateLeftInAirState.SubscribeEnterState(() => LastRotationState = _RotateLeftState);
+        _InputBuffer = new StateMachine<CharacterRotationState>.InputBuffer(
+            _Character.RotationStateMachine
+        );
+    }
+
+    private void Update()
+    {
+        _InputBuffer.Update();
     }
 
     public void UpdateRotation(float strength, Vector3 direction)
     {
         if (strength < 1)
             return;
-        var currentState = _Character.StateMachine.CurrentState;
         var rotateState = direction.x < 0 ? _RotateLeftState : _RotateRightState;
-        if (
-            rotateState != LastRotationState
-            // && (
-            //     currentState == _PrepareingToJump
-            //     || currentState == _Character.StateMachine.DefaultState
-            // )
-        )
+        var isRotating = RotateToState(rotateState);
+        if (isRotating)
         {
-            _Character.StateMachine.TrySetState(rotateState);
-            rotateState.SubscribeAnimEnd(
-                () => _Character.StateMachine.ForceSetState(_PrepareingToJump)
-            );
+            var isSet = _Character.StateMachine.TrySetState(_JumpState);
+            if (isSet)
+            {
+                _JumpState.SubscribeAnimEnd(
+                    () => _Character.StateMachine.ForceSetState(_PrepareingToJump)
+                );
+            }
         }
-        else if (currentState == _Character.StateMachine.DefaultState)
+        else if (_Character.StateMachine.CurrentState == _Character.StateMachine.DefaultState)
         {
-            _Character.StateMachine.ForceSetState(_PrepareingToJump);
+            _Character.StateMachine.TrySetState(_PrepareingToJump);
         }
+    }
+
+    private bool RotateToState(CharacterRotationState state)
+    {
+        var lookState = state == _RotateLeftState ? _LookLeftState : _LookRightState;
+        var isSet = _Character.RotationStateMachine.TrySetState(state);
+        if (isSet)
+        {
+            state.SubscribeAnimEnd(() => _Character.RotationStateMachine.ForceSetState(lookState));
+        }
+
+        return isSet;
     }
 
     public void StartFlying()
     {
         _Character.StateMachine.ForceSetState(_FlyingState);
+        IsGrounded = false;
+    }
+
+    public void PutOnGround()
+    {
+        _Character.StateMachine.TrySetState(_Character.StateMachine.DefaultState);
+        IsGrounded = true;
     }
 
     public void SetDefaultState()
     {
-        _Character.StateMachine.ForceSetState(_Character.StateMachine.DefaultState);
+        _Character.StateMachine.TrySetState(_Character.StateMachine.DefaultState);
     }
 
     public void HandleCollision(CollisionSide collisionSide)
@@ -72,17 +103,25 @@ public sealed class InputHandler : MonoBehaviour
         switch (collisionSide)
         {
             case CollisionSide.Left:
-                _Character.StateMachine.ForceSetState(_RotateRightInAirState);
-                _RotateRightInAirState.SubscribeAnimEnd(StartFlying);
+                // RotateToState(_RotateRightState);
+                _InputBuffer.Buffer(_RotateRightState, _InputTimeOut);
+                _RotateRightState.SubscribeAnimEnd(
+                    () => _Character.RotationStateMachine.ForceSetState(_LookRightState)
+                );
+
                 break;
             case CollisionSide.Right:
-                _Character.StateMachine.ForceSetState(_RotateLeftInAirState);
-                _RotateLeftInAirState.SubscribeAnimEnd(StartFlying);
+                // RotateToState(_RotateLeftState);
+                _InputBuffer.Buffer(_RotateLeftState, _InputTimeOut);
+                _RotateLeftState.SubscribeAnimEnd(
+                    () => _Character.RotationStateMachine.ForceSetState(_LookLeftState)
+                );
+                
                 break;
             case CollisionSide.Up:
                 break;
             case CollisionSide.Down:
-                _Character.StateMachine.ForceSetState(_Character.StateMachine.DefaultState);
+                PutOnGround();
                 break;
         }
     }

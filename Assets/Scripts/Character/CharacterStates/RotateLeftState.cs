@@ -1,22 +1,23 @@
 using Animancer;
 using UnityEngine;
 
-public sealed class RotateLeftState : CharacterState
+public sealed class RotateLeftState : CharacterRotationState
 {
     [SerializeReference]
-    private ClipTransition _Rotate;
+    private ClipTransition _RotateAnim;
+    public override CharacterRotationDirection Direction => CharacterRotationDirection.Left;
 
-    [SerializeReference]
-    private ClipTransition _Jump;
+    // [SerializeReference]
+    // private ClipTransition _Jump;
 
     public override CharacterStatePriority Priority => CharacterStatePriority.High;
 
-    public override bool CanInterruptSelf => true;
+    public override bool CanInterruptSelf => false;
 
     public override void OnEnter()
     {
-        Character.Animancer.Layers[0].Play(_Jump);
-        Character.Animancer.Layers[1].Play(_Rotate);
+        // Character.Animancer.Layers[0].Play(_Jump);
+        Character.Animancer.Layers[1].Play(_RotateAnim);
         // state.Weight = 0.5f;
         // jumpState.NormalizedTime = 0;
         // state.NormalizedTime = 0;
@@ -24,9 +25,9 @@ public sealed class RotateLeftState : CharacterState
 
     private void Awake()
     {
-        _Jump.Events.OnEnd = () =>
+        _RotateAnim.Events.OnEnd = () =>
         {
-            Character.Animancer.Stop(_Jump);
+            // Character.Animancer.Stop(_Jump);
             // Character.Animancer.Stop(_Rotate);
             AnimEndEvent.Invoke();
         };

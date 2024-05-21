@@ -36,11 +36,16 @@ public sealed class Character : MonoBehaviour
     private CharacterState.StateMachine _StateMachine;
     public CharacterState.StateMachine StateMachine => _StateMachine;
 
+    [SerializeField]
+    private CharacterRotationState.StateMachine _RotationStateMachine;
+    public CharacterRotationState.StateMachine RotationStateMachine => _RotationStateMachine;
+
     public UnityEvent<CollisionSide> CollisionEvent = new UnityEvent<CollisionSide>();
 
     private void Awake()
     {
         StateMachine.InitializeAfterDeserialize();
+        RotationStateMachine.InitializeAfterDeserialize();
         // StateMachine.DefaultState = _Idle;
         rb = GetComponent<Rigidbody>();
         // _AnimationController = GetComponent<AnimationController>();

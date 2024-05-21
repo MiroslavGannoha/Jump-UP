@@ -6,7 +6,7 @@ public sealed class FlyingState : CharacterState
     [SerializeField]
     private ClipTransition _Animation;
 
-    public override CharacterStatePriority Priority => CharacterStatePriority.Medium;
+    public override CharacterStatePriority Priority => CharacterStatePriority.Low;
 
     public override bool CanInterruptSelf => true;
 
