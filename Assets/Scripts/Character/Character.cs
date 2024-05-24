@@ -15,8 +15,7 @@ public enum CollisionSide
 [DefaultExecutionOrder(-10000)]
 public sealed class Character : MonoBehaviour
 {
-    private Rigidbody rb;
-
+    [Header("Character Settings")]
     [SerializeField]
     private Energy energyState;
 
@@ -26,8 +25,7 @@ public sealed class Character : MonoBehaviour
     [SerializeField]
     private float shotPower = 150f;
 
-    IEnumerator restoreEnergyCoroutine;
-
+    [Header("Animancer settings")]
     [SerializeField]
     private AnimancerComponent _Animancer;
     public AnimancerComponent Animancer => _Animancer;
@@ -40,7 +38,12 @@ public sealed class Character : MonoBehaviour
     private CharacterRotationState.StateMachine _RotationStateMachine;
     public CharacterRotationState.StateMachine RotationStateMachine => _RotationStateMachine;
 
+    [Header("Events")]
     public UnityEvent<CollisionSide> CollisionEvent = new UnityEvent<CollisionSide>();
+
+    # Private
+    private IEnumerator restoreEnergyCoroutine;
+    private Rigidbody rb;
 
     private void Awake()
     {
