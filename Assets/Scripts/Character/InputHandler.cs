@@ -103,7 +103,6 @@ public sealed class InputHandler : MonoBehaviour
         switch (collisionSide)
         {
             case CollisionSide.Left:
-                // RotateToState(_RotateRightState);
                 _InputBuffer.Buffer(_RotateRightState, _InputTimeOut);
                 _RotateRightState.SubscribeAnimEnd(
                     () => _Character.RotationStateMachine.ForceSetState(_LookRightState)
@@ -111,7 +110,6 @@ public sealed class InputHandler : MonoBehaviour
 
                 break;
             case CollisionSide.Right:
-                // RotateToState(_RotateLeftState);
                 _InputBuffer.Buffer(_RotateLeftState, _InputTimeOut);
                 _RotateLeftState.SubscribeAnimEnd(
                     () => _Character.RotationStateMachine.ForceSetState(_LookLeftState)

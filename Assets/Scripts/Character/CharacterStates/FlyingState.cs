@@ -10,7 +10,7 @@ public sealed class FlyingState : CharacterState
 
     public override bool CanInterruptSelf => true;
 
-    private void OnEnable()
+    private void OnEnter()
     {
         Character.Animancer.Play(_Animation);
     }
