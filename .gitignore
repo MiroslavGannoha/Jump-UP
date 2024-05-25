@@ -76,3 +76,10 @@ crashlytics-build.properties
 
 # Plugins that are not native to Unity
 /Assets/Plugins/
+
+# Temporary files
+.utmp/
+
+# Packages
+Packages/
+
