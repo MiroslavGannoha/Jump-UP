@@ -41,7 +41,7 @@ public sealed class Character : MonoBehaviour
     [Header("Events")]
     public UnityEvent<CollisionSide> CollisionEvent = new UnityEvent<CollisionSide>();
 
-    # Private
+    /* Private */
     private IEnumerator restoreEnergyCoroutine;
     private Rigidbody rb;
 
