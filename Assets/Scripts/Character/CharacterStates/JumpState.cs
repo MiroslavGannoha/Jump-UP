@@ -10,7 +10,7 @@ public sealed class JumpState : CharacterState
 
     public override bool CanInterruptSelf => false;
 
-    private void OnEnable()
+    public override void OnEnter()
     {
         Character.Animancer.Play(_Animation);
     }
