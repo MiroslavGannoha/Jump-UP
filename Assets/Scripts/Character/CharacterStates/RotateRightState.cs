@@ -4,7 +4,7 @@ using UnityEngine;
 public sealed class RotateRightState : CharacterRotationState
 {
     [SerializeReference]
-    private ClipTransition _RotateAnim;
+    private ClipTransitionAsset _Anim;
 
     // [SerializeReference]
     // private ClipTransition _Jump;
@@ -17,12 +17,12 @@ public sealed class RotateRightState : CharacterRotationState
     public override void OnEnter()
     {
         // Character.Animancer.Layers[0].Play(_Jump);
-        Character.Animancer.Layers[1].Play(_RotateAnim);
+        Character.Animancer.Layers[1].Play(_Anim);
     }
 
     private void Awake()
     {
-        _RotateAnim.Events.OnEnd = () =>
+        _Anim.Transition.Events.OnEnd = () =>
         {
             // Character.Animancer.Stop(_Jump);
             // Character.Animancer.Stop(_Rotate);
@@ -30,12 +30,3 @@ public sealed class RotateRightState : CharacterRotationState
         };
     }
 }
-
-
-// Should be 4 states:
-/*
-- RotatedRight (Low)
-- RotatedLeft (Low)
-- RotatingRight (Medium)
-- RotatingLeft (Medium)
-*/

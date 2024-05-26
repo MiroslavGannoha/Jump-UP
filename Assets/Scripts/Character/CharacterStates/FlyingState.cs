@@ -4,7 +4,7 @@ using UnityEngine;
 public sealed class FlyingState : CharacterState
 {
     [SerializeField]
-    private ClipTransition _Animation;
+    private ClipTransitionAsset _Animation;
 
     public override CharacterStatePriority Priority => CharacterStatePriority.Low;
 
@@ -13,10 +13,5 @@ public sealed class FlyingState : CharacterState
     public override void OnEnter()
     {
         Character.Animancer.Play(_Animation);
-    }
-
-    private void Awake()
-    {
-        // _Animation.Events.OnEnd = Character.StateMachine.ForceSetDefaultState;
     }
 }

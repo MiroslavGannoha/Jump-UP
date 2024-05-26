@@ -9,22 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a8877f26e7a6a43aaf06fade1a064a, type: 3}
-  m_Name: RotateRightTransition
+  m_Script: {fileID: 11500000, guid: 65baa284d24adb24b90b39482364509c, type: 3}
+  m_Name: BlinkEyesAsset
   m_EditorClassIdentifier: 
   _Transition:
-    rid: 7141722248747941966
+    rid: 7141722248747942176
   references:
     version: 2
     RefIds:
-    - rid: 7141722248747941966
+    - rid: 7141722248747942176
       type: {class: ClipTransition, ns: Animancer, asm: Animancer}
       data:
-        _FadeDuration: 0
+        _FadeDuration: 0.25
         _Events:
           _NormalizedTimes: []
           _Callbacks: []
           _Names: []
-        _Clip: {fileID: 7400000, guid: 93f4efac91c2aeb45b552850726d291f, type: 2}
+        _Clip: {fileID: 7400000, guid: 3060087a09d6ea3428678eb9bb0f5e4c, type: 2}
         _Speed: 1
         _NormalizedStartTime: NaN

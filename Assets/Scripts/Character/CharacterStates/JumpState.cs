@@ -4,7 +4,7 @@ using UnityEngine;
 public sealed class JumpState : CharacterState
 {
     [SerializeField]
-    private ClipTransition _Animation;
+    private ClipTransitionAsset _Animation;
 
     public override CharacterStatePriority Priority => CharacterStatePriority.Medium;
 
@@ -17,8 +17,7 @@ public sealed class JumpState : CharacterState
 
     private void Awake()
     {
-        // _Animation.Events.OnEnd = Character.StateMachine.ForceSetDefaultState;
-        _Animation.Events.OnEnd = () =>
+        _Animation.Transition.Events.OnEnd = () =>
         {
             Character.Animancer.Stop(_Animation);
             AnimEndEvent.Invoke();

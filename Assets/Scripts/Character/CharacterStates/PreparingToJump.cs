@@ -4,7 +4,7 @@ using UnityEngine;
 public sealed class PreparingToJump : CharacterState
 {
     [SerializeReference]
-    private ClipTransition _Animation;
+    private ClipTransitionAsset _Animation;
 
     public override CharacterStatePriority Priority => CharacterStatePriority.Low;
 
@@ -22,6 +22,6 @@ public sealed class PreparingToJump : CharacterState
 
     private void Awake()
     {
-        _Animation.Events.OnEnd = AnimEndEvent.Invoke;
+        _Animation.Transition.Events.OnEnd = AnimEndEvent.Invoke;
     }
 }

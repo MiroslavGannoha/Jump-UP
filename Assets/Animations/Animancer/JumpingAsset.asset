@@ -9,22 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a8877f26e7a6a43aaf06fade1a064a, type: 3}
-  m_Name: RotateLeftTransition
+  m_Script: {fileID: 11500000, guid: 65baa284d24adb24b90b39482364509c, type: 3}
+  m_Name: JumpingAsset
   m_EditorClassIdentifier: 
   _Transition:
-    rid: 7141722248747941968
+    rid: 7141722248747942180
   references:
     version: 2
     RefIds:
-    - rid: 7141722248747941968
+    - rid: 7141722248747942180
       type: {class: ClipTransition, ns: Animancer, asm: Animancer}
       data:
-        _FadeDuration: 0
+        _FadeDuration: 0.25
         _Events:
           _NormalizedTimes: []
           _Callbacks: []
           _Names: []
-        _Clip: {fileID: 7400000, guid: a0e56d49887fd9c468befb5de658d96b, type: 2}
+        _Clip: {fileID: 7400022, guid: 3b83f0f6cc95c0a47a86664d6552ef20, type: 3}
         _Speed: 1
         _NormalizedStartTime: NaN
