@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6588173864088094193}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +283,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4300385379961965585}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 372b91ed053acd14bba2c8624408d623, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 8103163225500457724}
   m_Layer: 0
   m_Name: TopFace
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
