@@ -111,7 +111,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FillingValue: 0.17
+    - _FillingValue: 1.7
     - _Float: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -138,7 +138,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _Tiling: {r: 2.37, g: 1, b: 0, a: 0}
-    - _WidthHeight: {r: 0.28, g: 0.06, b: 0, a: 0}
+    - _Tiling: {r: 2.65, g: 1, b: 0, a: 0}
+    - _WidthHeight: {r: 0.17, g: 0.23, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
