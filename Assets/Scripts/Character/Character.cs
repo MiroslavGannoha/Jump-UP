@@ -40,7 +40,9 @@ public sealed class Character : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent<CollisionSide> CollisionEvent = new UnityEvent<CollisionSide>();
-
+    [Header("References")]
+    [SerializeField]
+    private LineAimer lineAimer;
     /* Private */
     private IEnumerator restoreEnergyCoroutine;
     private Rigidbody rb;
@@ -64,7 +66,7 @@ public sealed class Character : MonoBehaviour
 
     public void PerformJump(float strength, Vector3 direction)
     {
-        var limitedCost = Math.Min(strength, 10f) / 10;
+        var limitedCost = Math.Min(strength, lineAimer.MaxLineLength) / lineAimer.MaxLineLength;
         float energyToSpend = Math.Min(limitedCost, energyState.energy);
         energyState.energy -= energyToSpend;
         rb.AddForce(energyToSpend * 10 * direction * shotPower, ForceMode.Impulse);
@@ -90,7 +92,7 @@ public sealed class Character : MonoBehaviour
 
     public void DisplayEnergyCost(float strength, Vector3 direction)
     {
-        var limitedCost = Math.Min(strength, 10f) / 10;
+        var limitedCost = Math.Min(strength, lineAimer.MaxLineLength) / lineAimer.MaxLineLength;
         energyState.cost = limitedCost / energyState.energy;
     }
 

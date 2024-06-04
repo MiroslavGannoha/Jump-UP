@@ -10,6 +10,7 @@ public class LineAimer : MonoBehaviour
 
     [SerializeField]
     private float stopVelocity = 0.05f;
+    public float MaxLineLength = 10f;
 
     private bool isEnabled = true;
 
@@ -50,7 +51,6 @@ public class LineAimer : MonoBehaviour
             DrawLine((Vector3)worldPoint);
             OnAiming.Invoke(strength, direction);
         }
-
         if (Input.GetMouseButtonUp(0))
         {
             ClearAim();
@@ -100,7 +100,14 @@ public class LineAimer : MonoBehaviour
     private void DrawLine(Vector3 worldPoint)
     {
         Vector3 endPosition = new Vector3(worldPoint.x, worldPoint.y, transform.position.z);
-        Vector3[] positions = { transform.position, endPosition };
+        Vector3 startPosition = transform.position;
+        float CurrentLineLength = Vector3.Magnitude(endPosition - startPosition);
+        Vector3 MaxLineLengthVector = (endPosition - startPosition).normalized * MaxLineLength;
+        if (CurrentLineLength > MaxLineLength)
+        {
+            endPosition = startPosition + MaxLineLengthVector;
+        }
+        Vector3[] positions = new Vector3[] { startPosition, endPosition };
         lineRenderer.SetPositions(positions);
         lineRenderer.enabled = true;
     }
