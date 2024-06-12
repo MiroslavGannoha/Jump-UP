@@ -70,15 +70,15 @@ PlayerSettings:
   androidRenderOutsideSafeArea: 1
   androidUseSwappy: 1
   androidBlitType: 0
-  androidResizableWindow: 0
+  androidResizeableActivity: 0
   androidDefaultWindowWidth: 1920
   androidDefaultWindowHeight: 1080
   androidMinimumWindowWidth: 400
   androidMinimumWindowHeight: 300
   androidFullscreenMode: 1
   androidAutoRotationBehavior: 1
-  androidApplicationEntry: 2
   androidPredictiveBackSupport: 0
+  androidApplicationEntry: 2
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
   runInBackground: 0
@@ -172,7 +172,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 23
+  AndroidMinSdkVersion: 33
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -262,7 +262,7 @@ PlayerSettings:
   useCustomGradlePropertiesTemplate: 0
   useCustomGradleSettingsTemplate: 0
   useCustomProguardFile: 0
-  AndroidTargetArchitectures: 2
+  AndroidTargetArchitectures: 8
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
@@ -385,7 +385,10 @@ PlayerSettings:
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
-  m_BuildTargetGraphicsAPIs: []
+  m_BuildTargetGraphicsAPIs:
+  - m_BuildTarget: AndroidPlayer
+    m_APIs: 0b000000
+    m_Automatic: 0
   m_BuildTargetVRSettings: []
   m_DefaultShaderChunkSizeInMB: 16
   m_DefaultShaderChunkCount: 0
@@ -794,3 +797,5 @@ PlayerSettings:
   platformRequiresReadableAssets: 0
   virtualTexturingSupportEnabled: 0
   insecureHttpOption: 0
+  androidVulkanDenyFilterList: []
+  androidVulkanAllowFilterList: []
