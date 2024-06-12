@@ -1,9 +1,16 @@
 using Animancer.FSM;
 using Animancer.Units;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public sealed class InputHandler : MonoBehaviour
 {
+    [SerializeField]
+    private MMF_Player JumpFBStartPlayer;
+
+    [SerializeField]
+    private MMF_Player JumpFBEndPlayer;
+
     [SerializeField]
     private Character _Character;
 
@@ -91,11 +98,34 @@ public sealed class InputHandler : MonoBehaviour
     {
         _Character.StateMachine.TrySetState(_Character.StateMachine.DefaultState);
         IsGrounded = true;
+        MidAirJumpFeedbackEnd();
     }
 
     public void SetDefaultState()
     {
         _Character.StateMachine.TrySetState(_Character.StateMachine.DefaultState);
+    }
+
+    public void MidAirJumpFeedbackStart()
+    {
+        Debug.Log($"_Character.StateMachine.CurrentState: {_Character.StateMachine.CurrentState}");
+        if (
+            _Character.StateMachine.CurrentState == _FlyingState
+            && JumpFBStartPlayer.IsPlaying == false
+        )
+        {
+            JumpFBStartPlayer.PlayFeedbacks();
+            Debug.Log("JumpFBStartPlayer.PlayFeedbacks()");
+        }
+    }
+
+    public void MidAirJumpFeedbackEnd()
+    {
+        if (JumpFBStartPlayer.IsPlaying)
+        {
+            // JumpFBStartPlayer.StopFeedbacks();
+            JumpFBEndPlayer.PlayFeedbacks();
+        }
     }
 
     public void HandleCollision(CollisionSide collisionSide)
@@ -114,7 +144,7 @@ public sealed class InputHandler : MonoBehaviour
                 _RotateLeftState.SubscribeAnimEnd(
                     () => _Character.RotationStateMachine.ForceSetState(_LookLeftState)
                 );
-                
+
                 break;
             case CollisionSide.Up:
                 break;
