@@ -40,9 +40,11 @@ public sealed class Character : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent<CollisionSide> CollisionEvent = new UnityEvent<CollisionSide>();
+
     [Header("References")]
     [SerializeField]
     private LineAimer lineAimer;
+
     /* Private */
     private IEnumerator restoreEnergyCoroutine;
     private Rigidbody rb;
@@ -114,7 +116,7 @@ public sealed class Character : MonoBehaviour
                 Vector3 hit = collision.contacts[0].normal;
                 float angle = Vector3.Angle(hit, Vector3.up);
 
-                if (Mathf.Approximately(angle, 0))
+                if (angle < 10)
                 {
                     //Down
                     CollisionEvent.Invoke(CollisionSide.Down);
