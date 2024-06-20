@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Animancer;
+using HighlightPlus;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -44,6 +45,9 @@ public sealed class Character : MonoBehaviour
     [Header("References")]
     [SerializeField]
     private LineAimer lineAimer;
+
+    [SerializeField]
+    HighlightEffect highlightEffect;
 
     /* Private */
     private IEnumerator restoreEnergyCoroutine;
@@ -106,6 +110,11 @@ public sealed class Character : MonoBehaviour
             energyState.energy += 0.005f;
             yield return new WaitForSeconds(0.01f);
         }
+    }
+
+    public void SetHighlightState(bool state)
+    {
+        highlightEffect.SetHighlighted(state);
     }
 
     void OnCollisionEnter(Collision collision)
